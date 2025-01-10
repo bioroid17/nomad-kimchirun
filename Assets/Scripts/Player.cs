@@ -38,4 +38,20 @@ public class NewMonoBehaviourScript : MonoBehaviour
             isGrounded = true;
         }
     }
+
+    void OnTriggerEnter2D(Collider2D collider)
+    {
+        if(collider.gameObject.tag == "Enemy")
+        {
+            
+        }
+        else if(collider.gameObject.tag == "Food")
+        {
+            // 미래에 작성할 예정
+        }
+        else if(collider.gameObject.tag == "Golden")
+        {
+            // 미래에 작성할 예정
+        }
+    }
 }
