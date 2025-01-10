@@ -7,6 +7,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
 
     [Header("References")]
     public Rigidbody2D PlayerRigidbody;
+    public Animator PlayerAnimator;
 
     private bool isGrounded = true;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -22,6 +23,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
         {
             PlayerRigidbody.AddForceY(JumpForce, ForceMode2D.Impulse);
             isGrounded = false;
+            PlayerAnimator.SetInteger("state", 1);
         }
     }
 
@@ -29,6 +31,10 @@ public class NewMonoBehaviourScript : MonoBehaviour
     {
         if(collision.gameObject.name == "Ground")
         {
+            if(!isGrounded)
+            {
+                PlayerAnimator.SetInteger("state", 2);
+            }
             isGrounded = true;
         }
     }
