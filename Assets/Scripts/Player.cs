@@ -15,15 +15,12 @@ public class Player : MonoBehaviour
     public bool isInvincible = false;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    void Start() { }
 
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Space) && isGrounded)
+        if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
             PlayerRigidbody.AddForceY(JumpForce, ForceMode2D.Impulse);
             isGrounded = false;
@@ -33,9 +30,9 @@ public class Player : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.name == "Ground")
+        if (collision.gameObject.name == "Ground")
         {
-            if(!isGrounded)
+            if (!isGrounded)
             {
                 PlayerAnimator.SetInteger("state", 2);
             }
@@ -49,19 +46,23 @@ public class Player : MonoBehaviour
         PlayerAnimator.enabled = false;
         PlayerRigidbody.AddForceY(JumpForce, ForceMode2D.Impulse);
     }
+
     void Hit()
     {
         GameManager.Instance.Lives--;
     }
+
     void Heal()
     {
         GameManager.Instance.Lives = Mathf.Min(3, GameManager.Instance.Lives + 1);
     }
+
     void StartInvincible()
     {
         isInvincible = true;
         Invoke("StopInvincible", 5f);
     }
+
     void StopInvincible()
     {
         isInvincible = false;
@@ -69,20 +70,20 @@ public class Player : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collider)
     {
-        if(collider.gameObject.tag == "Enemy")
+        if (collider.gameObject.tag == "Enemy")
         {
-            if(!isInvincible)
+            if (!isInvincible)
             {
                 Destroy(collider.gameObject);
                 Hit();
             }
         }
-        else if(collider.gameObject.tag == "Food")
+        else if (collider.gameObject.tag == "Food")
         {
             Destroy(collider.gameObject);
             Heal();
         }
-        else if(collider.gameObject.tag == "Golden")
+        else if (collider.gameObject.tag == "Golden")
         {
             Destroy(collider.gameObject);
             StartInvincible();

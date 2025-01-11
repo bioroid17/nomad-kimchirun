@@ -6,7 +6,7 @@ public enum GameState
 {
     Intro,
     Playing,
-    Dead
+    Dead,
 }
 
 public class GameManager : MonoBehaviour
@@ -49,23 +49,25 @@ public class GameManager : MonoBehaviour
         return Time.time - PlayStartTime;
     }
 
-    void SaveHighScore(){
+    void SaveHighScore()
+    {
         int score = Mathf.FloorToInt(CalculateScore());
         int currentHighScore = PlayerPrefs.GetInt("HighScore");
-        if(score > currentHighScore)
+        if (score > currentHighScore)
         {
             PlayerPrefs.SetInt("HighScore", score);
             PlayerPrefs.Save();
         }
     }
 
-    int GetHighScore(){
+    int GetHighScore()
+    {
         return PlayerPrefs.GetInt("HighScore");
     }
 
     public float CalculateGameSpeed()
     {
-        if(State != GameState.Playing)
+        if (State != GameState.Playing)
         {
             return 5f;
         }
@@ -76,13 +78,15 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(State == GameState.Playing)
+        if (State == GameState.Playing)
         {
             ScoreText.text = "Score: " + Mathf.FloorToInt(CalculateScore());
-        } else if (State == GameState.Dead){
+        }
+        else if (State == GameState.Dead)
+        {
             ScoreText.text = "High Score: " + GetHighScore();
         }
-        if(State == GameState.Intro && Input.GetKeyDown(KeyCode.Space))
+        if (State == GameState.Intro && Input.GetKeyDown(KeyCode.Space))
         {
             State = GameState.Playing;
             IntroUI.SetActive(false);
@@ -91,7 +95,7 @@ public class GameManager : MonoBehaviour
             GoldSpawner.SetActive(true);
             PlayStartTime = Time.time;
         }
-        if(State == GameState.Playing && Lives == 0)
+        if (State == GameState.Playing && Lives == 0)
         {
             PlayerScript.KillPlayer();
             EnemySpawner.SetActive(false);
@@ -101,7 +105,7 @@ public class GameManager : MonoBehaviour
             State = GameState.Dead;
             SaveHighScore();
         }
-        if(State == GameState.Dead && Input.GetKeyDown(KeyCode.Space))
+        if (State == GameState.Dead && Input.GetKeyDown(KeyCode.Space))
         {
             SceneManager.LoadScene("main");
         }

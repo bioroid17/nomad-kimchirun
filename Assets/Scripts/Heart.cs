@@ -8,15 +8,12 @@ public class Heart : MonoBehaviour
     public int LiveNumber;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    void Start() { }
 
     // Update is called once per frame
     void Update()
     {
-        if(GameManager.Instance.Lives >= LiveNumber)
+        if (GameManager.Instance.Lives >= LiveNumber)
         {
             SpriteRenderer.sprite = OnHeart;
         }
