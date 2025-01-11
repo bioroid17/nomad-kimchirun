@@ -617,8 +617,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bcda5ec884691e47bcb540ec14f809d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minSpawnDelay: 3
-  maxSpawnDelay: 5
+  minSpawnDelay: 1
+  maxSpawnDelay: 3
   gameObjects:
   - {fileID: 5630794976846364683, guid: 197883ff4d9d2bd44a207ea565311137, type: 3}
   - {fileID: 5630794976846364683, guid: d330a32da381b1a48bd2a31b301e8022, type: 3}
@@ -776,7 +776,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: -0.21037692}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -786,7 +786,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.99999994, y: 1}
+  m_Size: {x: 0.99999994, y: 0.57924616}
   m_EdgeRadius: 0
 --- !u!1 &1426397576
 GameObject:
@@ -817,8 +817,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bcda5ec884691e47bcb540ec14f809d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minSpawnDelay: 3
-  maxSpawnDelay: 5
+  minSpawnDelay: 30
+  maxSpawnDelay: 35
   gameObjects:
   - {fileID: 15734942725160872, guid: f6ab0d2785f558044a2d5a3df9e1d635, type: 3}
 --- !u!4 &1426397578
@@ -914,8 +914,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bcda5ec884691e47bcb540ec14f809d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minSpawnDelay: 3
-  maxSpawnDelay: 5
+  minSpawnDelay: 5
+  maxSpawnDelay: 7
   gameObjects:
   - {fileID: 7633040653418007544, guid: 9953d377b88f69848906c2798e5a7d22, type: 3}
   - {fileID: 7633040653418007544, guid: 78e3468a785c77c478bafba14de5196e, type: 3}
@@ -1042,7 +1042,7 @@ Transform:
   m_GameObject: {fileID: 1989127233}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8.42, y: -3.09, z: -10}
+  m_LocalPosition: {x: -8.42, y: -3.8, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1136,6 +1136,9 @@ MonoBehaviour:
   JumpForce: 12
   PlayerRigidbody: {fileID: 1989127237}
   PlayerAnimator: {fileID: 1989127234}
+  PlayerCollider: {fileID: 1989127238}
+  lives: 3
+  isInvincible: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

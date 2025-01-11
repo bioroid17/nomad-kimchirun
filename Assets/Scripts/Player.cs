@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class NewMonoBehaviourScript : MonoBehaviour
+public class Player : MonoBehaviour
 {
     [Header("Settings")]
     public float JumpForce;
@@ -8,8 +8,13 @@ public class NewMonoBehaviourScript : MonoBehaviour
     [Header("References")]
     public Rigidbody2D PlayerRigidbody;
     public Animator PlayerAnimator;
+    public BoxCollider2D PlayerCollider;
 
     private bool isGrounded = true;
+
+    public int lives = 3;
+    public bool isInvincible = false;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -39,19 +44,53 @@ public class NewMonoBehaviourScript : MonoBehaviour
         }
     }
 
+    void KillPlayer()
+    {
+        PlayerCollider.enabled = false;
+        PlayerAnimator.enabled = false;
+        PlayerRigidbody.AddForceY(JumpForce, ForceMode2D.Impulse);
+    }
+    void Hit()
+    {
+        lives--;
+        if(lives == 0)
+        {
+            KillPlayer();
+        }
+    }
+    void Heal()
+    {
+        lives = Mathf.Min(3, lives + 1);
+    }
+    void StartInvincible()
+    {
+        isInvincible = true;
+        Invoke("StopInvincible", 5f);
+    }
+    void StopInvincible()
+    {
+        isInvincible = false;
+    }
+
     void OnTriggerEnter2D(Collider2D collider)
     {
         if(collider.gameObject.tag == "Enemy")
         {
-            
+            if(!isInvincible)
+            {
+                Destroy(collider.gameObject);
+                Hit();
+            }
         }
         else if(collider.gameObject.tag == "Food")
         {
-            // 미래에 작성할 예정
+            Destroy(collider.gameObject);
+            Heal();
         }
         else if(collider.gameObject.tag == "Golden")
         {
-            // 미래에 작성할 예정
+            Destroy(collider.gameObject);
+            StartInvincible();
         }
     }
 }
