@@ -12,7 +12,6 @@ public class Player : MonoBehaviour
 
     private bool isGrounded = true;
 
-    public int lives = 3;
     public bool isInvincible = false;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -44,7 +43,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    void KillPlayer()
+    public void KillPlayer()
     {
         PlayerCollider.enabled = false;
         PlayerAnimator.enabled = false;
@@ -52,15 +51,11 @@ public class Player : MonoBehaviour
     }
     void Hit()
     {
-        lives--;
-        if(lives == 0)
-        {
-            KillPlayer();
-        }
+        GameManager.Instance.Lives--;
     }
     void Heal()
     {
-        lives = Mathf.Min(3, lives + 1);
+        GameManager.Instance.Lives = Mathf.Min(3, GameManager.Instance.Lives + 1);
     }
     void StartInvincible()
     {
